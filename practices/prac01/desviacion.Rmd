@@ -1,0 +1,48 @@
+---
+title: "Desviacion standar"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#install.packages("dslabs")
+library(dslabs)
+library(dplyr)
+```
+
+## Ejemplo 01
+
+Determinar media, desviacion estando y varianza
+``` {r echo=F}
+dataT <- data.frame(
+  'altura' = c(167, 178, 179, 177, 174, 183, 165, 193, 175, 162 ,181 ,186, 166, 176, 186, 169, 187, 183, 190, 163) 
+)
+dataT
+```
+
+La Solución:
+
+```{r,   echo=F}
+
+
+dataT %>%
+
+  summarise(
+            'Promedio de edades' = mean(altura),
+            'Desviacion estandar' = sd(altura),
+            'Varianza' = var(altura)
+    )
+```
+
+## Including Plots
+
+histograma
+
+```{r pressure, echo=FALSE}
+hist(dataT$altura, 
+     main = 'Histograma de tallas',
+     xlab = 'Talla'
+     )
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
