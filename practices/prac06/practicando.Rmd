@@ -1,0 +1,73 @@
+---
+title: "Responda las siguientes cuestiones:"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+setwd('~/sistemas/statistics/practices/prac06/')
+data <- read_csv("base.csv")
+
+```
+
+## 1.- ¿Cuanto  es el recorrido promedio de los vehículos?
+
+
+
+```{r}
+data %>%
+
+summarise(
+'Media' = mean(data$km),
+)
+
+#quantile(data$precio, c(0.25))
+```
+## 2.- ¿que interpretacion le darias al Q1 de la veriable "precio"?
+```{r}
+data %>%
+summarise(
+'Q1' = quantile(precio, c(0.25)),
+'Q2' = median(precio)
+)
+
+
+summary(data)
+#quantile(data$precio, c(0.25))
+```
+
+
+## 3.- ¿cual es el modelo mas frecuente respecto a la transmisión del vehículo?
+```{r}
+data %>%
+  count(modelo) %>%
+  top_n(
+  3, n
+  )
+```
+
+## 4.- ¿Cómo es el comportamiento de los precios, es tendencioso?
+```{r}
+data %>%
+summarise(
+'varianza' = var(precio),
+'Desviacion estandar' = sd(precio),
+)
+```
+## 5.- ¿Detectas mucha o poca dispersion en el recorrido que han tenido los vehículos?
+```{r}
+
+```
+
+## 6.- Propon un reporte tabla o gráfico
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+#plot(pressure)
+hist(data$precio)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
